@@ -19,7 +19,7 @@ async fn handle_connection(
                 match incoming {
                     Some(Ok(msg)) => {
                         if let Some(text) = msg.as_text() {
-                            println!("From client {addr:?}: {text}");
+                            println!("Nadhif's Computer - From server: {addr:?}: {text}");
                             let _ = bcast_tx.send(format!("{addr}: {text}"));
                         }
                     }
@@ -40,7 +40,7 @@ async fn handle_connection(
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let (bcast_tx, _) = channel(16);
     let listener = TcpListener::bind("127.0.0.1:8080").await?;
-    println!("listening on port 8080");
+    println!("Nadhif's Computer - From server: Welcome to chat! Type a message");
 
     loop {
         let (socket, addr) = listener.accept().await?;
